@@ -1,0 +1,4 @@
+<a *ngFor="let trip of trips"
+ routerLink="/tripdetails/{{trip.id}}">
+  <div><h4>Captain: {{trip.customerName}}</h4></div>
+</a>

@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - App",
+            "request": "launch",
+            "mainClass": "com.home.trip.report.App",
+            "projectName": "trip-report"
+        }
+    ]
+}
