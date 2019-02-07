@@ -11,6 +11,9 @@ export class TripsComponent implements OnInit {
 
   trips: Trip[];
 
+  searchStart: Date;
+  searchEnd: Date;
+
   constructor(private tripService: TripService) {}
 
   ngOnInit() {

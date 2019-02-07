@@ -1,4 +1,16 @@
+Start:
+<input [(ngModel)]="startDate" [matDatepicker]="startDatepicker" />
+<mat-datepicker-toggle matSuffix [for]="startDatepicker"></mat-datepicker-toggle>
+<mat-datepicker #startDatepicker></mat-datepicker>
+
+End:
+<input [(ngModel)]="endDate" [matDatepicker]="endDatepicker" />
+<mat-datepicker-toggle matSuffix [for]="endDatepicker"></mat-datepicker-toggle>
+<mat-datepicker #endDatepicker></mat-datepicker>
+
 <a *ngFor="let trip of trips"
  routerLink="/tripdetails/{{trip.id}}">
   <div><h4>Captain: {{trip.customerName}}</h4></div>
 </a>
+
+{{startDate}} - {{endDate}}
