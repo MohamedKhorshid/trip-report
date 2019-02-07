@@ -1,16 +1,12 @@
 Start:
-<input [(ngModel)]="startDate" [matDatepicker]="startDatepicker" />
-<mat-datepicker-toggle matSuffix [for]="startDatepicker"></mat-datepicker-toggle>
-<mat-datepicker #startDatepicker></mat-datepicker>
+<input [(ngModel)]="searchStart" [owlDateTime]="startDatePicker" [owlDateTimeTrigger]="startDatePicker" />
+<owl-date-time #startDatePicker></owl-date-time>
 
 End:
-<input [(ngModel)]="endDate" [matDatepicker]="endDatepicker" />
-<mat-datepicker-toggle matSuffix [for]="endDatepicker"></mat-datepicker-toggle>
-<mat-datepicker #endDatepicker></mat-datepicker>
+<input [(ngModel)]="searchEnd" [owlDateTime]="endDatePicker" [owlDateTimeTrigger]="endDatePicker" />
+<owl-date-time #endDatePicker></owl-date-time>
 
 <a *ngFor="let trip of trips"
  routerLink="/tripdetails/{{trip.id}}">
   <div><h4>Captain: {{trip.customerName}}</h4></div>
 </a>
-
-{{startDate}} - {{endDate}}

@@ -2,8 +2,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {MatDatepickerModule} from '@angular/material/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 
 import { AppComponent } from './app.component';
 import { TripsComponent } from './trips/trips.component';
@@ -25,8 +25,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     BrowserAnimationsModule
   ],
   providers: [],
