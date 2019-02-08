@@ -17,33 +17,40 @@ export class ElasticService {
     }
   }
 
-  search(idx: string, typ: string, queryObj: any): Promise<any[]> {
+  search(idx: string, typ: string, queryObj: any): Promise<any> {
 
     return this.client.search({
       index: idx,
       type: typ,
       body: {
         query: queryObj
-      }, filterPath: ['hits.hits._source', 'hits.hits._id']
+      }, filterPath: ['hits.hits._source', 'hits.hits._id', 'hits.total']
     }).then(values => {
-      if (values.hits) {
-        return values.hits.hits.map((value) => {
+      console.log(values);
+
+      const hits = {total: Number, list: []};
+      hits.total = values.hits.total;
+
+      if (values.hits.hits) {
+        hits.list = values.hits.hits.map((value) => {
           const val = value._source;
           val.id = value._id;
           return val;
         });
+
       }
+      return hits;
     });
 
   }
 
-  getAll(idx: string, typ: string): Promise<any[]> {
+  getAll(idx: string, typ: string): Promise<any> {
     return this.search(idx, typ, {
       match_all: {}
     });
   }
 
-  searchRange(idx: string, typ: string, property: string, startRange: any, endRange: any): Promise<any[]> {
+  searchRange(idx: string, typ: string, property: string, startRange: any, endRange: any): Promise<any> {
 
     return this.search(idx, typ, {
       range: {

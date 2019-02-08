@@ -9,7 +9,8 @@ End:
 
 <button (click)="search()">Search</button>
 <button (click)="clear()" *ngIf="trips">Clear</button>
-<div class="results" *ngIf="trips">
+<div class="results" *ngIf="trips?.length">
+  Total: {{total}}
   <a *ngFor="let trip of trips"
   routerLink="/tripdetails/{{trip.id}}">
    <div><h4>Captain: {{trip.customerName}}</h4></div>

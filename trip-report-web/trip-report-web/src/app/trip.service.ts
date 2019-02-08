@@ -16,7 +16,7 @@ export class TripService {
     private elastic: ElasticService
     ) { }
 
-  getTrips(start: Date, end: Date): Promise<any[]> {
+  getTrips(start: Date, end: Date): Promise<any> {
     this.messageService.add('fetching all trips');
     return this.elastic.searchRange('trips', 'trip', 'start', start.getTime(), end.getTime());
   }

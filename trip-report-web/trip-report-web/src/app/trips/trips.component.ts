@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class TripsComponent implements OnInit {
 
   trips: Trip[];
+  total: number;
 
   searchStart: Date;
   searchEnd: Date;
@@ -24,7 +25,10 @@ export class TripsComponent implements OnInit {
   }
 
   search() {
-    this.tripService.getTrips(this.searchStart, this.searchEnd).then(trips => this.trips = trips);
+    this.tripService.getTrips(this.searchStart, this.searchEnd).then(result => {
+      this.trips = result.list;
+      this.total = result.total;
+    });
   }
 
   clear() {
