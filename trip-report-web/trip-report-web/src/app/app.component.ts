@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import 'hammerjs';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +6,5 @@ import 'hammerjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Trip Report';
+
 }

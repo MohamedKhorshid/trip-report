@@ -1,18 +1,37 @@
-Start:
-<input [(ngModel)]="searchStart" [owlDateTime]="startDatePicker" [owlDateTimeTrigger]="startDatePicker" />
-<owl-date-time #startDatePicker></owl-date-time>
-
-End:
-<input [(ngModel)]="searchEnd" [owlDateTime]="endDatePicker" [owlDateTimeTrigger]="endDatePicker" />
-<owl-date-time #endDatePicker></owl-date-time>
-
-
-<button (click)="search()">Search</button>
-<button (click)="clear()" *ngIf="trips">Clear</button>
-<div class="results" *ngIf="trips?.length">
-  Total: {{total}}
-  <a *ngFor="let trip of trips"
-  routerLink="/tripdetails/{{trip.id}}">
-   <div><h4>Captain: {{trip.customerName}}</h4></div>
-  </a>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-4">
+      <div class="form-group">
+        <input class="form-control" placeholder="Start" [(ngModel)]="searchStart" [owlDateTime]="startDatePicker" [owlDateTimeTrigger]="startDatePicker" />
+        <owl-date-time #startDatePicker></owl-date-time>
+      </div>
+      <div class="form-group">
+        <input class="form-control" placeholder="End" [(ngModel)]="searchEnd" [owlDateTime]="endDatePicker" [owlDateTimeTrigger]="endDatePicker" />
+        <owl-date-time #endDatePicker></owl-date-time>
+      </div>
+      <div class="form-group">
+        <button (click)="search()" class="btn btn-primary">Search</button>
+        &nbsp;
+        <button (click)="clear()"  class="btn btn-warning">Clear</button>
+      </div>
+      <div class="form-group" *ngIf="trips?.length">
+          Total: {{total}}
+        </div>
+    </div>
+    <div class="col-8">
+        <div *ngIf="trips?.length">
+          <div class="card" *ngFor="let trip of trips">
+              <div class="card-body">
+                <h5 class="card-title">{{trip.customerName}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Duration: {{trip.getDuration()}}</h6>
+                <p>Started: {{trip.start | date:'short'}}</p>
+                <p>Ended: {{trip.end | date:'short'}}</p>
+                <p>Captain: {{trip.captainName}}</p>
+                <a href="javascript:void(0)" class="card-link">Details</a>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
 </div>
+

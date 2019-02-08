@@ -26,7 +26,6 @@ export class ElasticService {
         query: queryObj
       }, filterPath: ['hits.hits._source', 'hits.hits._id', 'hits.total']
     }).then(values => {
-      console.log(values);
 
       const hits = {total: Number, list: []};
       hits.total = values.hits.total;

@@ -9,8 +9,9 @@ import { AppComponent } from './app.component';
 import { TripsComponent } from './trips/trips.component';
 import { TripDetailComponent } from './trip-detail/trip-detail.component';
 import { MessagesComponent } from './messages/messages.component';
-import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HeaderNavComponent } from './header-nav/header-nav.component';
 
 
 @NgModule({
@@ -19,15 +20,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     TripsComponent,
     TripDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeaderNavComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

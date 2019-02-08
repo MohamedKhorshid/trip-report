@@ -1,5 +1,6 @@
 <div *ngIf="trip">
+  Trip started: {{trip.start}}
+  Trip ended: {{trip.end}}
   Customer: {{trip.customerName}}
   Captain: {{trip.captainName}}
 </div>
-<button (click)="goBack()">Back</button>
