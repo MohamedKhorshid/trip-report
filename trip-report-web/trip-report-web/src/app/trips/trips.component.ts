@@ -14,6 +14,8 @@ export class TripsComponent {
 
   trips: Trip[] = [];
   total: number;
+  current = 1;
+  pageSize = 10;
 
   searchStart: Date;
   searchEnd: Date;
@@ -26,17 +28,23 @@ export class TripsComponent {
     }
   }
 
-  search() {
-    this.tripService.getTrips(this.searchStart, this.searchEnd).then(result => {
+  search(page: number) {
+    console.log(page);
+    this.trips = [];
+    this.tripService.getTrips(this.searchStart, this.searchEnd, page ? page : 1, this.pageSize).then(result => {
       result.list.forEach(trip => {
         this.trips.push(new Trip(trip));
       });
       this.total = result.total;
     });
+
+    this.current = page ? page : 1;
   }
 
   clear() {
     this.trips = [];
+    this.total = null;
+    this.current = 1;
   }
 
   createDateOnly(): Date {
@@ -49,4 +57,5 @@ export class TripsComponent {
 
     return date;
   }
+
 }

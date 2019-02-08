@@ -17,13 +17,15 @@ export class ElasticService {
     }
   }
 
-  search(idx: string, typ: string, queryObj: any): Promise<any> {
+  search(idx: string, typ: string, queryObj: any, page: number, siz: number): Promise<any> {
 
     return this.client.search({
       index: idx,
       type: typ,
       body: {
-        query: queryObj
+        query: queryObj,
+        size: siz,
+        from: ((page - 1) * siz) + 1
       }, filterPath: ['hits.hits._source', 'hits.hits._id', 'hits.total']
     }).then(values => {
 
@@ -46,10 +48,10 @@ export class ElasticService {
   getAll(idx: string, typ: string): Promise<any> {
     return this.search(idx, typ, {
       match_all: {}
-    });
+    }, 1, 1);
   }
 
-  searchRange(idx: string, typ: string, property: string, startRange: any, endRange: any): Promise<any> {
+  searchRange(idx: string, typ: string, property: string, startRange: any, endRange: any, page: number, size: number): Promise<any> {
 
     return this.search(idx, typ, {
       range: {
@@ -58,7 +60,7 @@ export class ElasticService {
           lte: endRange
         }
       }
-  });
+  }, page, size);
   }
 
   find(idx: string, typ: string, identifier: string): Promise<any> {
