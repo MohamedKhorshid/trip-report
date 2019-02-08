@@ -17,22 +17,42 @@ export class ElasticService {
     }
   }
 
-  getAll(idx: string, typ: string): Promise<any[]> {
+  search(idx: string, typ: string, queryObj: any): Promise<any[]> {
 
     return this.client.search({
       index: idx,
       type: typ,
       body: {
-        query: {
-          match_all: {}
-        }
+        query: queryObj
       }, filterPath: ['hits.hits._source', 'hits.hits._id']
-    }).then(values => values.hits.hits.map((value) => {
-      const val = value._source;
-      val.id = value._id;
-      return val;
-    }));
+    }).then(values => {
+      if (values.hits) {
+        return values.hits.hits.map((value) => {
+          const val = value._source;
+          val.id = value._id;
+          return val;
+        });
+      }
+    });
 
+  }
+
+  getAll(idx: string, typ: string): Promise<any[]> {
+    return this.search(idx, typ, {
+      match_all: {}
+    });
+  }
+
+  searchRange(idx: string, typ: string, property: string, startRange: any, endRange: any): Promise<any[]> {
+
+    return this.search(idx, typ, {
+      range: {
+        [property]: {
+          gte: startRange,
+          lte: endRange
+        }
+      }
+  });
   }
 
   find(idx: string, typ: string, identifier: string): Promise<any> {

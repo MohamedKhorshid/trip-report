@@ -6,7 +6,12 @@ End:
 <input [(ngModel)]="searchEnd" [owlDateTime]="endDatePicker" [owlDateTimeTrigger]="endDatePicker" />
 <owl-date-time #endDatePicker></owl-date-time>
 
-<a *ngFor="let trip of trips"
- routerLink="/tripdetails/{{trip.id}}">
-  <div><h4>Captain: {{trip.customerName}}</h4></div>
-</a>
+
+<button (click)="search()">Search</button>
+<button (click)="clear()" *ngIf="trips">Clear</button>
+<div class="results" *ngIf="trips">
+  <a *ngFor="let trip of trips"
+  routerLink="/tripdetails/{{trip.id}}">
+   <div><h4>Captain: {{trip.customerName}}</h4></div>
+  </a>
+</div>

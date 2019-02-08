@@ -21,11 +21,14 @@ export class TripsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getTrips();
   }
 
-  getTrips(): void {
-    this.tripService.getTrips().then(trips => this.trips = trips);
+  search() {
+    this.tripService.getTrips(this.searchStart, this.searchEnd).then(trips => this.trips = trips);
+  }
+
+  clear() {
+    this.trips = [];
   }
 
   createDateOnly(): Date {
